@@ -4,7 +4,7 @@ export interface IVideoItem {
    id: string;
    snippet: ISnippet;
    statistics: {
-     viewCount: string,
+     viewCount: number,
      likeCount: string,
      dislikeCount: string,
      favoriteCount: string,
@@ -25,7 +25,7 @@ export interface ISearchItem {
      likeCount: string,
      dislikeCount: string,
      favoriteCount: string,
-     commentCount: string
+     commentCount: string,
     };
 }
 
@@ -38,6 +38,8 @@ interface ISnippet {
     default: IThumbnailsItem,
     medium: IThumbnailsItem,
     high: IThumbnailsItem,
+    standard: IThumbnailsItem,
+    maxres: IThumbnailsItem,
   };
   channelTitle: string;
   tags: string[];

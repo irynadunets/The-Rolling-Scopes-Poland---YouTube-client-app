@@ -1,6 +1,4 @@
-import { AfterViewInit, Component, Output, OnInit, EventEmitter, OnDestroy } from '@angular/core';
-import { Observable, fromEvent, Subscription } from 'rxjs';
-import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Component, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-search-box',
@@ -8,7 +6,7 @@ import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators'
   styleUrls: ['./search-box.component.scss']
 })
 export class SearchBoxComponent implements OnInit {
-  private subscription: Subscription;
+  public searchText: string;
   public isShow: boolean = false;
 
   @Output() public search: EventEmitter<string> = new EventEmitter<string>();
@@ -18,28 +16,14 @@ export class SearchBoxComponent implements OnInit {
 
   public ngOnInit(): void { }
 
-  public ngAfterViewInit(): void {
-    const terms$: Observable<any> = fromEvent<any>(document.getElementById('input-search'), 'keyup')
-      .pipe(
-        map(event => event.target.value),
-        filter(searchTerm => searchTerm.length > 2),
-        debounceTime(1000),
-        distinctUntilChanged()
-      );
-    this.subscription = terms$
-      .subscribe(
-        criterion => {
-          this.search.emit(criterion);
-        }
-      );
-   }
-
-   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-   }
-
   public onSortShow(): void {
     this.isShow = !this.isShow;
     this.show.emit(this.isShow);
+  }
+
+  public onSearch(): void {
+    if (this.searchText) {
+      this.search.emit(this.searchText);
+    }
   }
 }

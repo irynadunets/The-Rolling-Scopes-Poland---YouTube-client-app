@@ -16,7 +16,7 @@ export class FilterBoxComponent implements OnInit {
 
   constructor() { }
 
-  public ngOnInit(): void { }
+  public ngOnInit(): void {  }
 
   public sortDate(param: string): void {
     this.isDateSort ? this.sortd.emit('dateDec') : this.sortd.emit('dateInc');
@@ -31,4 +31,5 @@ export class FilterBoxComponent implements OnInit {
   public onSort(): void {
     this.sortw.emit(this.filtrValue);
   }
+
 }

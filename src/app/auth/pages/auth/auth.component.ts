@@ -22,11 +22,7 @@ export class AuthComponent implements OnInit {
     if (this.login && this.password) {
       this.logged = true;
       this.loginService.auth(this.login, this.password, this.logged);
-      if (this.login === 'admin') {
-        this.router.navigate(['admin']);
-      } else {
-        this.router.navigate(['main']);
-      }
+      this.router.navigate(['main']);
     } else {
       this.isShow = true;
     }

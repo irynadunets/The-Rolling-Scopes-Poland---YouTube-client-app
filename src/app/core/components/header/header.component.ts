@@ -19,30 +19,30 @@ export class HeaderComponent implements OnInit {
   @Output() public sortd: EventEmitter<string> = new EventEmitter<string>();
   @Output() public sortv: EventEmitter<string> = new EventEmitter<string>();
 
- public ngOnInit(): void { }
+  public ngOnInit(): void { }
 
-  public onSearch($event: string): void {
-    this.searchText = $event;
-    this.search.emit(this.searchText);
-  }
+   public onSearch($event: string): void {
+     this.searchText = $event;
+     this.search.emit(this.searchText);
+   }
 
-  public onSortShow($event: boolean): void {
-    this.isShow = $event;
-  }
+   public onSortShow($event: boolean): void {
+     this.isShow = $event;
+   }
 
-  public onSort($event: string): void {
-    this.filtrValue = $event;
-    this.sortw.emit(this.filtrValue);
-  }
+   public onSort($event: string): void {
+     this.filtrValue = $event;
+     this.sortw.emit(this.filtrValue);
+   }
 
-  public onDate($event: string): void {
-    this.param1 = $event;
-    this.sortd.emit(this.param1);
-  }
+   public onDate($event: string): void {
+     this.param1 = $event;
+     this.sortd.emit(this.param1);
+   }
 
-  public onViews($event: string): void {
-    this.param2 = $event;
-    this.sortv.emit(this.param2);
-  }
+   public onViews($event: string): void {
+     this.param2 = $event;
+     this.sortv.emit(this.param2);
+   }
 
-}
+ }

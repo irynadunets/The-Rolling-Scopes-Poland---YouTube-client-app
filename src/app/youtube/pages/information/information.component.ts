@@ -1,64 +1,39 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { YoutubeService } from '../../services/youtube.service';
-import { Location } from '@angular/common';
+import { ItemsService } from '../../../shared/services/items-service';
 import { IVideoItem} from '../../../shared/models/search-item.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html',
   styleUrls: ['./information.component.scss'],
-  providers: [YoutubeService]
+  providers: [ItemsService]
 })
 export class InformationComponent implements OnInit {
 
-  private route: ActivatedRoute;
-  private location: Location;
-  private youtubeService: YoutubeService;
-  public items: IVideoItem[] = [];
   public id: string;
-  public card: IVideoItem;
+  public items: IVideoItem[] = [];
   public color: string;
   public date: Date|string;
-  public img: string;
-  public description: string;
-  public viewCount: string;
-  public likeCount: string;
-  public dislikeCount: string;
-  public commentCount: string;
-  public title: string;
+  public card: IVideoItem;
 
-  constructor(route: ActivatedRoute, location: Location, youtubeService: YoutubeService ) {
+  constructor(private route: ActivatedRoute, private location: Location, private itemsService: ItemsService) {
     this.route.params.subscribe( params => {
       this.id = params.id;
     });
    }
 
   public ngOnInit(): void {
-    this.initCard();
-  }
-
-  public initCard(): void {
-    this.youtubeService.getItemById(this.id)
-      .subscribe(
-        data => {
-          this.card = data.items[0];
-          this.color = this.card.snippet.publishedAt;
-          this.title = this.card.snippet.title;
-          this.description = this.card.snippet.description;
-          this.date = new Date(this.color);
-          this.date = this.date.toDateString().substring(-25);
-          this.img = this.card.snippet.thumbnails.high.url;
-          this.viewCount = this.card.statistics.viewCount;
-          this.likeCount = this.card.statistics.likeCount;
-          this.dislikeCount = this.card.statistics.dislikeCount;
-          this.commentCount = this.card.statistics.commentCount;
-        },
-        err => console.log(err)
-      );
+    this.items = this.itemsService.items;
+    this.card = this.items.find(el => el.id === this.id);
+    this.color = this.card.snippet.publishedAt;
+    this.date = new Date(this.color);
+    this.date = this.date.toDateString().substring(-25);
   }
 
   public return(): void {
     this.location.back();
   }
+
 }

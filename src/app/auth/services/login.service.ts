@@ -1,22 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  public logined: BehaviorSubject<boolean>;
+  public logined: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() {
-    const isLoggedIn: boolean = localStorage.getItem('user') !== null;
-    this.logined = new BehaviorSubject(isLoggedIn);
-  }
+  constructor() { }
 
   public auth(username: string, password: string, logged: boolean): boolean {
     localStorage.setItem('user', username);
     localStorage.setItem('password', password);
-    this.logined.next(true);
+    this.logined.emit(logged);
     return true;
   }
 
@@ -24,7 +21,7 @@ export class LoginService {
     name = 'Your Name';
     localStorage.removeItem('user');
     localStorage.removeItem('password');
-    this.logined.next(false);
+    this.logined.emit(false);
   }
 
   public loggedIn(): boolean {

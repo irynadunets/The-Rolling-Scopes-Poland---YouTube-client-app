@@ -1,6 +1,8 @@
+import { IVideoItem } from '../models/search-item.model';
+
 export class ItemsService {
 
-  public items = [
+  public items: IVideoItem[] = [
     {
       'kind': 'youtube#video',
       'etag': '"Fznwjl6JEQdo1MGvHOGaz_YanRU/tmmI1yiRrmLWlKikXk1gD3TXsUI"',

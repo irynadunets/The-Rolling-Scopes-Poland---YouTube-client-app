@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { LoginComponent } from './core/components/login/login.component';
@@ -21,12 +20,8 @@ import { HomeComponent } from './auth/pages/home/home.component';
 import { InformationComponent } from './youtube/pages/information/information.component';
 import { ErrorComponent } from './auth/pages/error/error.component';
 import { AuthComponent } from './auth/pages/auth/auth.component';
-import { AdminComponent } from './auth/pages/admin/admin.component';
-import { CardStoreService } from './store/store.service';
 import { LoginService } from './auth/services/login.service';
 import { AuthGuard } from './shared/guards/auth.guard';
-import { ParamInterceptor } from './youtube/services/youtube.interceptor';
-import { StoreModule } from '@ngrx/store';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,8 +29,11 @@ const appRoutes: Routes = [
   { path: 'main',
     component: MainComponent,
     canActivate: [AuthGuard] },
-  { path: 'admin',
-      component: AdminComponent,
+  { path: '#about',
+      component: MainComponent,
+      canActivate: [AuthGuard] },
+  { path: 'data',
+      component: MainComponent,
       canActivate: [AuthGuard] },
   { path: 'information/:id',
     component: InformationComponent,
@@ -61,26 +59,17 @@ const appRoutes: Routes = [
     HomeComponent,
     InformationComponent,
     ErrorComponent,
-    AuthComponent,
-    AdminComponent
+    AuthComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
-    StoreModule.forRoot({}, {})
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AuthGuard,
-    CardStoreService,
-    LoginService,
-    {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ParamInterceptor,
-    multi: true
-  }
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
