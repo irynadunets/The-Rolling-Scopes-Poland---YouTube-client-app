@@ -1,76 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './core/components/header/header.component';
-import { LoginComponent } from './core/components/login/login.component';
-import { FilterBoxComponent } from './core/components/filter-box/filter-box.component';
-import { SearchBoxComponent } from './core/components/search-box/search-box.component';
-import { SearchResultComponent } from './youtube/components/search-result/search-result.component';
-import { SearchItemComponent } from './youtube/components/search-item/search-item.component';
-import { AppRoutingModule } from './app-routing.module';
-import { FilterPipe } from './youtube/pipes/filter.pipe';
-import { ColorDirective } from './youtube/directives/color.directive';
-import { SortPipe } from './youtube/pipes/sort.pipe';
-import { SortDatePipe } from './youtube/pipes/sort-date.pipe';
-import { SortViewsPipe } from './youtube/pipes/sort-views.pipe';
-import { MainComponent } from './youtube/pages/main/main.component';
-import { HomeComponent } from './auth/pages/home/home.component';
-import { InformationComponent } from './youtube/pages/information/information.component';
-import { ErrorComponent } from './auth/pages/error/error.component';
-import { AuthComponent } from './auth/pages/auth/auth.component';
-import { LoginService } from './auth/services/login.service';
-import { AuthGuard } from './shared/guards/auth.guard';
 
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'auth', component: AuthComponent },
-  { path: 'main',
-    component: MainComponent,
-    canActivate: [AuthGuard] },
-  { path: '#about',
-      component: MainComponent,
-      canActivate: [AuthGuard] },
-  { path: 'data',
-      component: MainComponent,
-      canActivate: [AuthGuard] },
-  { path: 'information/:id',
-    component: InformationComponent,
-    canActivate: [AuthGuard] },
-  { path: '**', component: ErrorComponent },
-];
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { FilterBoxComponent } from './filter-box/filter-box.component';
+import { SearchItemComponent } from './search-item/search-item.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { LoginComponent } from './login/login.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent,
     FilterBoxComponent,
-    SearchBoxComponent,
     SearchItemComponent,
     SearchResultComponent,
-    FilterPipe,
-    ColorDirective,
-    SortPipe,
-    SortDatePipe,
-    SortViewsPipe,
-    MainComponent,
-    HomeComponent,
-    InformationComponent,
-    ErrorComponent,
-    AuthComponent
+    LoginComponent,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
-  providers: [
-    AuthGuard,
-    LoginService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
