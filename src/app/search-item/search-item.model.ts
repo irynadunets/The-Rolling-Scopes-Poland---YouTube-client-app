@@ -21,7 +21,8 @@ interface ISnippet {
   channelTitle: string;
   tags: string[];
   categoryId: string;
-  liveBroadcastContent: string;  
+  liveBroadcastContent: string;
+  defaultLanguage?: string;
   localized: ILocalized;
   defaultAudioLanguage: string;
 }
