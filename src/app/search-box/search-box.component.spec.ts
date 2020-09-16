@@ -19,10 +19,3 @@ describe('SearchBoxComponent', () => {
     fixture.detectChanges();
   });
 
-<<<<<<< HEAD
-=======
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
->>>>>>> 0dbff1f1fecb5a12d64b60f454a929e383e2bef3
-});
