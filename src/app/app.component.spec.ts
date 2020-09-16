@@ -14,25 +14,16 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  const fixture: ComponentFixture<AppComponent>;
-
-  it('should create the app', () => {
-    fixture = TestBed.createComponent(AppComponent);
-    const app: app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'YouTube-client-app'`, () => {
-    fixture = TestBed.createComponent(AppComponent);
-    const app: app = fixture.componentInstance;
-    expect(app.title).toEqual('YouTube-client-app');
+  it(`should have as title 'angular-youtube-client'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('angular-youtube-client');
   });
 
   it('should render title', () => {
-    fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled: compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).
-    toContain('YouTube-client-app app is running!');
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('angular-youtube-client app is running!');
   });
 });
