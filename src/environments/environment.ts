@@ -10,7 +10,7 @@ export interface Environment {
 export const environment: Environment = {
   production: false,
   YOUTUBE_URL: 'https://www.googleapis.com/youtube/v3',
-  YOUTUBE_KEY: 'AIzaSyBGSIb1JvwyC_KGp0jnMfDu0f2SoAPNjaI',
+  YOUTUBE_KEY: 'AIzaSyB8diZn13NqYqZjFiot7Z8rn7DQ3wHlV_I',
 };
 
 /*
