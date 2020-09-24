@@ -16,10 +16,7 @@ export class ColorDirective {
     let m: Date = new Date();
     m.setMonth(m.getMonth() - environment.terms[0]);
     let w: Date = new Date();
-    w.setDate(w.getDate() - environment.terms[2]);
-    console.log(y);
-    console.log(m);
-    console.log(w);
+    w.setDate(w.getDate() - environment.terms[2]);    
     let p: Date = new Date(this.color);
     if (y > p) {
        this.renderer2.setStyle(this.elementRef.nativeElement, 'background', environment.colors[0]);
