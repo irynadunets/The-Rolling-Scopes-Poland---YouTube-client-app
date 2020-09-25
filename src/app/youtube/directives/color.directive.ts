@@ -1,4 +1,5 @@
 import { Directive, ElementRef, Renderer2, Input, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Directive({
   selector: '[appColor]'
@@ -11,21 +12,21 @@ export class ColorDirective {
 
   public ngOnChanges(): void {
     let y: Date = new Date();
-    y.setMonth(y.getMonth() - 6);
+    y.setMonth(y.getMonth() - environment.terms[1]);
     let m: Date = new Date();
-    m.setMonth(m.getMonth() - 1);
+    m.setMonth(m.getMonth() - environment.terms[0]);
     let w: Date = new Date();
-    w.setDate(w.getDate() - 7);
+    w.setDate(w.getDate() - environment.terms[2]);
     let p: Date = new Date(this.color);
     if (y > p) {
-       this.renderer2.setStyle(this.elementRef.nativeElement, 'background', 'red');
+       this.renderer2.setStyle(this.elementRef.nativeElement, 'background', environment.colors[0]);
      } else if (m.toISOString() > p.toISOString()) {
-       this.renderer2.setStyle(this.elementRef.nativeElement, 'background', 'yellow');
+       this.renderer2.setStyle(this.elementRef.nativeElement, 'background', environment.colors[1]);
     } else if (w.toISOString() > p.toISOString()) {
-      this.renderer2.setStyle(this.elementRef.nativeElement, 'background', 'green');
+      this.renderer2.setStyle(this.elementRef.nativeElement, 'background', environment.colors[2]);
     } else {
-      this.renderer2.setStyle(this.elementRef.nativeElement, 'background', 'blue');
+      this.renderer2.setStyle(this.elementRef.nativeElement, 'background', environment.colors[3]);
     }
   }
 
- }
+  }
