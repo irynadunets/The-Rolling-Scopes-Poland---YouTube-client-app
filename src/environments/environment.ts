@@ -12,7 +12,6 @@ export const environment: Environment = {
   terms: [1, 6, 7],
   colors: [ 'red', 'yellow', 'green', 'blue' ],
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
