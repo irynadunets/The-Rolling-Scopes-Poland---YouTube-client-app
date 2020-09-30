@@ -19,3 +19,7 @@ describe('SearchBoxComponent', () => {
     fixture.detectChanges();
   });
 
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
